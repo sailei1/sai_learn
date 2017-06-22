@@ -5,6 +5,7 @@ import  modal from  './modules/modal'
 
 Vue.use(Vuex);
 
+
 const debug = process.env.NODE_ENV !== 'production';
 
 const store = new Vuex.Store({

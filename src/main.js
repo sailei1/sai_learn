@@ -2,9 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 // import App from './App'
+// import { sync } from 'vuex-router-sync'
 import router from './router'
 import VueResource from 'vue-resource'
 import store from './store'
+
+import  * as mutation_types from './store/mutations';
+import  * as action_types from './store/actions';
 
 Vue.use(VueResource)
 Vue.config.productionTip = false
@@ -13,15 +17,20 @@ Vue.http.options.emulateJSON = true
 
 //路由钩子
 
+// sync(store, router);
+
 Vue.mixin({
   beforeRouteEnter(to, from, next){
-    debugger;
-    next(vm => {
-      vm.customComponentList = {
-        'hello': require('@/components/Hello.vue'),
-      };
-      debugger;
-    })
+    if(to.name=='test') {
+      next(vm => {
+        vm.customComponentList = {
+          'hello': require('@/components/Hello.vue'),
+        };
+        debugger;
+      })
+    }
+
+
 
     next(true);
   },
@@ -31,6 +40,15 @@ Vue.mixin({
   },
   beforeRouteLeave(to, from, next){
     debugger;
+
+    if(to.name=='sync') {
+
+      let modules= require('./store/modules/sync.js');
+      store.registerModule('test',modules)
+
+    }
+
+
     next(true);
   }
 });

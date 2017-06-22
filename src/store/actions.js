@@ -1,2 +1,4 @@
 //action 异步
 export const INCREMENTASYNC = 'INCREMENTASYNC';
+
+export const DYNAMIC_ACTIONS = 'DYNAMIC_ACTIONS';
