@@ -1,7 +1,16 @@
 <template>
+  <div>
   <div  v-on:click="testTrigger" >
        sync {{sync}}
   </div>
+
+  <div  v-on:click="reset" >
+    sync {{sync}}
+  </div>
+
+  </div>
+
+
 
 </template>
 
@@ -27,6 +36,9 @@
          testTrigger(){
            this.$store.commit(mutation_types.DYNAMIC_MUTATIONS);
            this.$store.dispatch(action_types.DYNAMIC_ACTIONS,5);
+         },
+         reset(){
+
          }
        }
      }

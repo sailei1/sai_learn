@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 // import App from './App'
-// import { sync } from 'vuex-router-sync'
+import { sync } from 'vuex-router-sync'
 import router from './router'
 import VueResource from 'vue-resource'
 import store from './store'
@@ -42,10 +42,15 @@ Vue.mixin({
     debugger;
 
     if(to.name=='sync') {
+       if(!store.state.sync) {
+         debugger;
+         let modules = require('./store/modules/sync.js');
+         store.registerModule('test', modules)
+       }
 
-      let modules= require('./store/modules/sync.js');
-      store.registerModule('test',modules)
-
+    }
+    if(to.name=='index'){
+      store.unregisterModule('test');
     }
 
 
